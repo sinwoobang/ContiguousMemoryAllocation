@@ -7,4 +7,9 @@ public class Process extends AbstractResource {
         super(sizeBytes);
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Process %d, %d KB", id, getSizeBytes() / 1024);
+    }
 }

@@ -13,6 +13,18 @@ public class Memory {
         resources.add(new Hole(256 * KB));
     }
 
+    public AbstractResource getResourceById(int id) {
+        return resources
+                .stream()
+                .filter(res -> res.id == id)
+                .findFirst()
+                .orElseThrow();
+    }
+
+    public boolean hasResource(int id) {
+        return resources.stream().anyMatch(res -> res.id == id);
+    }
+
     public int[] analyzeFit(Process process) {
         /* The function which finds the best fit and the worst fit for allocation of process. */
 
@@ -161,21 +173,25 @@ public class Memory {
         return buffer.toString();
     }
 
-    private void printResourcesStatistics() {
-        /* The function which prints statistics of the member resources.
-        * Bytes which are free, the average value of that and The number of allocated processes are provided.
-        * Warning : The below code is inefficient. I just wanted to try using Stream API.
-        * */
+    public String getResourcesStatisticsString() {
+        /* The function which get String value of statistics of the member resources.
+         * Bytes which are free, the average value of that and The number of allocated processes are provided.
+         * Warning : The below code is inefficient. I just wanted to try using Stream API.
+         * */
 
         long numBlocks = resources.stream().filter(res -> res instanceof Hole).mapToInt(AbstractResource::getSizeBytes).count();
         int averageSize = (int) resources.stream().filter(res -> res instanceof Hole).mapToInt(AbstractResource::getSizeBytes).average().orElse(0) / 1024;
         int sizeBytesFree = resources.stream().filter(res -> res instanceof Hole).mapToInt(AbstractResource::getSizeBytes).sum() / 1024;
 
-
-        System.out.format(
-            "Memory Resources Size Info : %s\n" +
-            "%dK : Free, %d block(s), average size = %dK\n\n",
-            getResourceString(), sizeBytesFree, numBlocks, averageSize
+        return String.format(
+                "Memory Resources Size Info : %s\n" +
+                        "%dK : Free, %d block(s), average size = %dK",
+                getResourceString(), sizeBytesFree, numBlocks, averageSize
         );
+    }
+
+    private void printResourcesStatistics() {
+        System.out.println(getResourcesStatisticsString());
+        System.out.println();
     }
 }
