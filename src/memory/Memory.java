@@ -103,8 +103,34 @@ public class Memory {
         printResourcesStatistics();
     }
 
-    void compaction() {
-        // TODO
+    public void compaction() {
+        /* The functions which compacts holes. */
+        int indexFirstHole = -1;
+        boolean isFirst = true;
+
+        int sumHoleBytes = 0;
+        ArrayList<AbstractResource> tmpResources = new ArrayList<>();
+        for (int i = 0 ; i < resources.size(); i++) {
+            AbstractResource resource = resources.get(i);
+            if (resource instanceof Hole) {
+                if (isFirst) {
+                    isFirst = false;
+                    indexFirstHole = i;
+                } else {
+                    tmpResources.add(resource);
+                }
+                sumHoleBytes += resource.getSizeBytes();
+            }
+        }
+
+        for (AbstractResource resource : tmpResources) {
+            resources.remove(resource);
+        }
+
+        resources.get(indexFirstHole).setSizeBytes(sumHoleBytes);
+
+        System.out.println("**Compaction**");
+        printResourcesStatistics();
     }
 
     private void coalesce(Hole holeFirst, Hole holeSecond) {

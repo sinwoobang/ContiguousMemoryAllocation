@@ -19,6 +19,10 @@ public abstract class AbstractResource {
         return sizeBytes;
     }
 
+    public void setSizeBytes(int sizeBytes) {
+        this.sizeBytes = sizeBytes;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof AbstractResource) {

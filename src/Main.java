@@ -33,5 +33,7 @@ public class Main {
         memory.allocate(fits[0], p5);
 
         memory.free(p2);
+
+        memory.compaction();
     }
 }
