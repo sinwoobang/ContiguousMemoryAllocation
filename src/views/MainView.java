@@ -1,6 +1,6 @@
 package views;
 
-import memory.Memory;
+import models.memory.Memory;
 import ui.CommandBtn;
 
 import javax.swing.*;

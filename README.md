@@ -5,7 +5,11 @@ Java Implementation of Contiguous Memory Allocation(CMA)
 ### What is Contiguous Memory Allocation?
 
 <img src="https://images.slideplayer.com/39/10910338/slides/slide_17.jpg" width="50%">
+<br>
 Contiguous Allocation Memory is a way of Memory Management. This repository is an implementation of it.
+
+### Package
+- models : 
 
 ### Warning
 - It is just my toy project. Do not make a reference to it on a serious project.

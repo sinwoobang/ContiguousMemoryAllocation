@@ -1,12 +1,12 @@
-import memory.Memory;
-import memory.Process;
+import models.memory.Memory;
+import models.memory.Process;
 import views.MainView;
 
 
 public class Main {
     static void sleep() {
         try {
-            Thread.sleep(100);
+            Thread.sleep(1500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

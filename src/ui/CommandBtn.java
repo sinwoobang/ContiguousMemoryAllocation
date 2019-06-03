@@ -1,7 +1,7 @@
 package ui;
 
-import memory.Memory;
-import memory.Process;
+import models.memory.Memory;
+import models.memory.Process;
 import views.MainView;
 
 import javax.swing.*;

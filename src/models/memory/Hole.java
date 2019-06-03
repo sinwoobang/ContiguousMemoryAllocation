@@ -1,4 +1,4 @@
-package memory;
+package models.memory;
 
 import java.util.Random;
 
